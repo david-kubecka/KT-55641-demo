@@ -161,7 +161,6 @@
                         <configuration>
                             <sourceDirs>
                                 <sourceDir>src/main/kotlin</sourceDir>
-                                <sourceDir>target/generated-sources/kapt</sourceDir>
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -174,7 +173,6 @@
                         <configuration>
                             <sourceDirs>
                                 <sourceDir>src/test/kotlin</sourceDir>
-                                <!--                                <sourceDir>target/generated-sources</sourceDir>-->
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -186,6 +184,24 @@
                 <configuration>
                     <skipMain>true</skipMain>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/target/generated-sources/kapt/compile</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
